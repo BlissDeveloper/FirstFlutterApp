@@ -1,10 +1,9 @@
+import 'package:first_flutter_app/app_screens/second_sceen.dart';
 import "package:flutter/material.dart";
 
 void main() {
   //The app param holds all the widgets you will use
-  runApp(
-    MyFlutterApp()
-  );
+  runApp(MyFlutterApp());
 }
 
 //To lessen the messy code, we need to have a child class of the StatelessWidget class
@@ -21,21 +20,34 @@ class MyFlutterApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: Scaffold(
           //Scaffold enabled an appbar
+          body: Fragment(),
           appBar: AppBar(
             title: Text("My First Flutter App"),
             backgroundColor: Colors.blue,
           ),
-          body: Material(
-            color: Colors.lightBlue,
-            child: Center(
-                child: Text(
-                  "Hello Flutter",
-                  textDirection: TextDirection.ltr,
-                  style: TextStyle(color: Colors.white, fontSize: 40.0),
-                )),
-          ),
         ));
 
     return widget;
+  }
+}
+
+class Fragment extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    Widget widget = Material(
+        child: Center(
+            child: Text(
+      generateDateToday(),
+      style: TextStyle(fontSize: 24.0),
+      textDirection: TextDirection.ltr,
+    )));
+    return widget;
+  }
+
+  String generateDateToday() {
+    DateTime now = new DateTime.now();
+    DateTime date = new DateTime(now.year, now.month, now.day);
+    String dateToday = date.toString();
+    return dateToday;
   }
 }
